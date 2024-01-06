@@ -8,6 +8,12 @@
             <div class="alert alert-warning">{{ Session::get('deleted') }}</div>
         @endif
     <table class="table table-striped table-bordered table-hover">
+        <div class="my-5 d-flex justify-content-start">
+            <form class="d-flex" method="GET" style="width: 500px; display:flex; margin-bottom: -10px;">
+                <input class="form-control me-2" type="text" placeholder="Search" name="text" aria-label="Search">
+                <button class="btn btn-info me-2" type="submit">Search</button>
+            </form>
+        </div>
         <thead>
             <tr>
                 <th>No</th>

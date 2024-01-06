@@ -10,11 +10,17 @@ class MedicineController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $medicines = Medicine::all();
-        return view('medicine.index', compact('medicines'));
+        $keyword = $request->text;
+        $medicines = Medicine::where('name', 'LIKE', '%' . $keyword . '%')
+        ->OrWhere('type', 'LIKE', '%' . $keyword . '%')
+        ->OrWhere('price', 'LIKE', '%' . $keyword . '%')
+        ->OrWhere('stock', 'LIKE', '%' . $keyword . '%')->simplePaginate(10);
+        return view('medicine.index', compact('medicines'));   
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
